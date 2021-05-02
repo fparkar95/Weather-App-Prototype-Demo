@@ -1,0 +1,77 @@
+<div class="card mt-4">
+    <h4 class="card-header">Weather Dashboard</h4>
+    <div class="card-body">
+        <h6 *ngIf="user"> Viewing As: {{user.firstName}} {{user.lastName}}</h6>
+        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+    </div>
+    <div *ngFor="let unit of units">
+      <button type="radio" (click)="setUnit(unit)"> {{unit}}</button>
+    </div>
+    Unit of Measurement: {{selectedUnit}}
+    <form
+    [formGroup]="citySearchForm"
+    (ngSubmit)="getGeneralCityData(citySearchForm.value)">
+    <div class="form-group">
+      <input
+        class="form-control"
+        type="text"
+        id="weatherLocation"
+        aria-describedby="weatherLocation"
+        placeholder="Please enter a name of a city "
+        formControlName="location"
+      />
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary btn-md">
+        Search for the weather
+      </button>
+    </div>
+  </form>
+</div>
+<div *ngIf="data" class="card-mt-6">
+  <h3 class="card-header text-center my-4">{{ data.cityName }}, {{data.country}} Weather Details:</h3>
+  <div>
+    <img src="{{data.condition.icon}}">
+  </div>
+  <p class="text-center">
+    Temperature: <strong>{{ data.currentData.temp }} {{unitString}}</strong>
+  </p>
+  <p class="text-center">
+    Pressure: <strong>{{ data.currentData.pressure }}</strong>
+  </p>
+  <p class="text-center">
+    Humidity: <strong>{{ data.currentData.humidity }}</strong>
+  </p>
+  <p class="text-center">
+    Low Temperature: <strong>{{ data.currentData.temp_min }} {{unitString}}</strong>
+  </p>
+  <p class="text-center">
+    High Temperature: <strong>{{ data.currentData.temp_max }} {{unitString}}</strong>
+  </p>
+  
+  <div class="text-center">
+    <button type="button" (click)="getAlerts(data)" class="btn btn-danger btn-md">
+      Alerts
+    </button>
+    <button type="button" (click)="getForecast(data,'hourly')" class="btn btn-success btn-md">
+      Hourly Forecast
+    </button>
+    <button type="button" (click)="getForecast(data,'daily')" class="btn btn-success btn-md">
+      Daily Forecast
+    </button>
+    <button type="button"  (click)="getForecast(data,'weekly')" class="btn btn-success btn-md">
+      Weekly Forecast
+    </button>
+    <button type="button" (click)="getForecast(data,'monthly')" class="btn btn-success btn-md">
+      Monthly Forecast
+    </button>
+  </div>
+
+<div *ngIf="data&& data.alerts && data.alerts.length == 0" class="card-mt-6">
+  <div class='card-header'><strong>No Alerts Available at the moment</strong></div>
+</div>
+<div *ngIf="data && data.forecastData && data.forecastData.daily" class="card-mt-6">
+  <div class='card-header'><strong>No Forecasts Available at the moment</strong></div>
+</div>
+</div>
+
