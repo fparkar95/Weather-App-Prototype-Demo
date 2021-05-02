@@ -9,6 +9,10 @@ May 2nd, 2021.
 
 https://fparkar95.github.io/Weather-App-Prototype-Demo/
 
+<strong>This endpoint is not hitting my proxy for openWeatherAPI. Hence run the application locally, and you will be able to see my API displaying real data with images in the weather-dashboard.</strong>
+
+Read this document for API design, and api calls are triggered in the weather-dashboard component and weather service code.
+
 ### Time spent
 
 Approximately 4 hours on building the app on Angular with the stretch goals included.
