@@ -7,7 +7,7 @@ May 2nd, 2021.
 
 ### Location of deployed application
 
-If applicable, please provide the url where we can find and interact with your running application.
+https://fparkar95.github.io/Weather-App-Prototype-Demo/
 
 ### Time spent
 
